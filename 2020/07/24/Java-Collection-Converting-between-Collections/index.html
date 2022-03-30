@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Java,Collection," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="秋寒" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="Java集合——Collection之间的转换Java中Array和List之间的转换展示如何使用核心Java库、Guava或Apache Commons Collections在Array和List之间进行转换。 将Array转换成List1、利用Arrays.asList方法12345&#x2F;&#x2F;将以定义好的数组进行转换Integer[] arr &#x3D; new Integer[]&amp;#123;1, 3,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java集合——Collection之间的转换">
+<meta property="og:url" content="https://woshiqiuhan.github.io/2020/07/24/Java-Collection-Converting-between-Collections/index.html">
+<meta property="og:site_name" content="秋寒">
+<meta property="og:description" content="Java集合——Collection之间的转换Java中Array和List之间的转换展示如何使用核心Java库、Guava或Apache Commons Collections在Array和List之间进行转换。 将Array转换成List1、利用Arrays.asList方法12345&#x2F;&#x2F;将以定义好的数组进行转换Integer[] arr &#x3D; new Integer[]&amp;#123;1, 3,">
+<meta property="og:locale">
+<meta property="article:published_time" content="2020-07-24T09:25:22.000Z">
+<meta property="article:modified_time" content="2020-08-10T02:58:24.000Z">
+<meta property="article:author" content="秋寒">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="Collection">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://woshiqiuhan.github.io/2020/07/24/Java-Collection-Converting-between-Collections/"/>
+
+
+
+
+
+  <title>Java集合——Collection之间的转换 | 秋寒</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?31e07dbe85a7db06e2e2da0ef6330461";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+	<a target="_blank" rel="noopener" href="https://github.com/woshiqiuhan" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">秋寒</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">不愠不火</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://woshiqiuhan.github.io/2020/07/24/Java-Collection-Converting-between-Collections/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/touxiang.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="秋寒">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Java集合——Collection之间的转换</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-24T17:25:22+08:00">
+                2020-07-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaSE/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaSE</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/07/24/Java-Collection-Converting-between-Collections/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/07/24/Java-Collection-Converting-between-Collections/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Java集合——Collection之间的转换"><a href="#Java集合——Collection之间的转换" class="headerlink" title="Java集合——Collection之间的转换"></a>Java集合——Collection之间的转换</h1><h2 id="Java中Array和List之间的转换"><a href="#Java中Array和List之间的转换" class="headerlink" title="Java中Array和List之间的转换"></a>Java中Array和List之间的转换</h2><p>展示如何使用<strong>核心Java库</strong>、<strong>Guava</strong>或<strong>Apache Commons Collections</strong>在Array和List之间进行转换。</p>
+<h3 id="将Array转换成List"><a href="#将Array转换成List" class="headerlink" title="将Array转换成List"></a>将Array转换成List</h3><h4 id="1、利用Arrays-asList方法"><a href="#1、利用Arrays-asList方法" class="headerlink" title="1、利用Arrays.asList方法"></a>1、利用<code>Arrays.asList</code>方法</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//将以定义好的数组进行转换</span></span><br><span class="line">Integer[] arr = <span class="keyword">new</span> Integer[]&#123;<span class="number">1</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">2</span>, <span class="number">1</span>&#125;;</span><br><span class="line">List&lt;Integer&gt; list = Arrays.asList(arr);</span><br><span class="line"><span class="comment">//直接利用Arrays.asList方法直接创建</span></span><br><span class="line"><span class="comment">//List&lt;Integer&gt; list = Arrays.asList(1, 3, 4, 2, 4, 2, 1);</span></span><br></pre></td></tr></table></figure>
+<p>注：</p>
+<ol>
+<li>该方法对基本数据类型不太友好，如<code>int</code>，只能转换成应用类型，如<code>Integer</code>。</li>
+<li><code>Arrays.asList</code>方法得到的List与Collection下的List是<strong>不一样</strong>的，它没有<code>add</code>和<code>remove</code>方法。（通过查阅源码可知，<code>Arrays.asList</code>返回的List是Array中的实现的<strong>内部类</strong>，而该类并没有定义<code>add</code>和<code>remove</code>方法）</li>
+<li>若对list使用<code>add</code>或<code>remove</code>方法，编译时不报错，运行时报错。</li>
+<li>当使用<code>Arrays.asList</code>方法时，Array就和List链接在一起了，即当更新其中之一时，另一个将<strong>自动更新</strong>。（原因：<code>Arrays.asList</code>获得List实际就是原数组的一个<strong>引用</strong>）<br>具体现象如下：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">list.set(<span class="number">0</span>,<span class="number">55</span>);</span><br><span class="line">System.out.println(list);</span><br><span class="line">System.out.println(arr[<span class="number">0</span>]);</span><br><span class="line">arr[<span class="number">0</span>] = <span class="number">100</span>;</span><br><span class="line">System.out.println(<span class="string">&quot;================&quot;</span>);</span><br><span class="line">System.out.println(list);</span><br><span class="line">System.out.println(arr[<span class="number">0</span>]);</span><br><span class="line"></span><br><span class="line">运行结果如下：</span><br><span class="line">[<span class="number">55</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">2</span>, <span class="number">1</span>]</span><br><span class="line"><span class="number">55</span></span><br><span class="line">================</span><br><span class="line">[<span class="number">100</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">2</span>, <span class="number">1</span>]</span><br><span class="line"><span class="number">100</span></span><br></pre></td></tr></table></figure>
+（4）若想List与Array<strong>无关联</strong>，可用如下写法，此时的list不是Arrays的内部类，拥有<code>add</code>和<code>remove</code>等方法。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Integer[] arr = <span class="keyword">new</span> Integer[]&#123;<span class="number">1</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">2</span>, <span class="number">1</span>&#125;;</span><br><span class="line">List&lt;Integer&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;(Arrays.asList(arr));</span><br></pre></td></tr></table></figure>
+<h4 id="2、利用Collections-addAll方法"><a href="#2、利用Collections-addAll方法" class="headerlink" title="2、利用Collections.addAll方法"></a>2、利用<code>Collections.addAll</code>方法</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Integer[] arr = <span class="keyword">new</span> Integer[]&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">7</span>, <span class="number">7</span>, <span class="number">7</span>, <span class="number">7</span>&#125;;</span><br><span class="line">List&lt;Integer&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">Collections.addAll(list,arr);</span><br></pre></td></tr></table></figure>
+<h4 id="3、利用Guava库的Lists-newArrayList方法"><a href="#3、利用Guava库的Lists-newArrayList方法" class="headerlink" title="3、利用Guava库的Lists.newArrayList方法"></a>3、利用<code>Guava</code>库的<code>Lists.newArrayList</code>方法</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Integer[] a = <span class="keyword">new</span> Integer[]&#123;<span class="number">1</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">2</span>, <span class="number">1</span>&#125;;</span><br><span class="line">ArrayList&lt;Integer&gt; list = Lists.newArrayList(a);</span><br><span class="line"><span class="comment">//直接利用Arrays.asList方法直接创建</span></span><br><span class="line"><span class="comment">//List&lt;Integer&gt; list = Lists.newArrayList(1, 3, 4, 2, 4, 2, 1);</span></span><br></pre></td></tr></table></figure>
+注：<code>Lists</code>和<code>Ints</code>均是<code>Guava</code>库下的工具包，转变之后与方法1不同，此时Array与List<strong>相互分离</strong>。</li>
+</ol>
+<h4 id="4、利用Apache-Commons-Collections-第三方库CollectionUtils-addAll方法"><a href="#4、利用Apache-Commons-Collections-第三方库CollectionUtils-addAll方法" class="headerlink" title="4、利用Apache Commons Collections 第三方库CollectionUtils.addAll方法"></a>4、利用<code>Apache Commons Collections</code> 第三方库<code>CollectionUtils.addAll</code>方法</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Integer[] arr = &#123; <span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span> &#125;;</span><br><span class="line">List&lt;Integer&gt; list = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">CollectionUtils.addAll(list, arr);</span><br></pre></td></tr></table></figure>
+<h3 id="将List转换成Array"><a href="#将List转换成Array" class="headerlink" title="将List转换成Array"></a>将List转换成Array</h3><h4 id="1、利用toArray方法"><a href="#1、利用toArray方法" class="headerlink" title="1、利用toArray方法"></a>1、利用<code>toArray</code>方法</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Integer[] arr = list.toArray(<span class="keyword">new</span> Integer[list.size()]);</span><br></pre></td></tr></table></figure>
+<h4 id="2、利用Guava库的Lists-toArray方法"><a href="#2、利用Guava库的Lists-toArray方法" class="headerlink" title="2、利用Guava库的Lists.toArray方法"></a>2、利用<code>Guava</code>库的<code>Lists.toArray</code>方法</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] arr = Ints.toArray(list);</span><br></pre></td></tr></table></figure>
+<h2 id="Java中Array和Set之间的转换"><a href="#Java中Array和Set之间的转换" class="headerlink" title="Java中Array和Set之间的转换"></a>Java中Array和Set之间的转换</h2><h3 id="将Array转换成Set"><a href="#将Array转换成Set" class="headerlink" title="将Array转换成Set"></a>将Array转换成Set</h3><h4 id="1、利用HashSet的构造方法"><a href="#1、利用HashSet的构造方法" class="headerlink" title="1、利用HashSet的构造方法"></a>1、利用<code>HashSet</code>的构造方法</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Integer[] arr = <span class="keyword">new</span> Integer[]&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">7</span>, <span class="number">7</span>, <span class="number">7</span>, <span class="number">7</span>&#125;;</span><br><span class="line">Set&lt;Integer&gt; set = <span class="keyword">new</span> HashSet&lt;&gt;(Arrays.asList(arr));</span><br></pre></td></tr></table></figure>
+<h4 id="2、利用Collections-addAll方法-1"><a href="#2、利用Collections-addAll方法-1" class="headerlink" title="2、利用Collections.addAll方法"></a>2、利用<code>Collections.addAll</code>方法</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Integer[] arr = <span class="keyword">new</span> Integer[]&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">7</span>, <span class="number">7</span>, <span class="number">7</span>, <span class="number">7</span>&#125;;</span><br><span class="line">Set&lt;Integer&gt; set = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">Collections.addAll(set, arr);</span><br></pre></td></tr></table></figure>
+<h4 id="3、利用Guava库的Sets-newHashSet方法"><a href="#3、利用Guava库的Sets-newHashSet方法" class="headerlink" title="3、利用Guava库的Sets.newHashSet方法"></a>3、利用<code>Guava</code>库的<code>Sets.newHashSet</code>方法</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Integer[] arr = <span class="keyword">new</span> Integer[]&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">7</span>, <span class="number">7</span>, <span class="number">7</span>, <span class="number">7</span>&#125;;</span><br><span class="line">Set&lt;Integer&gt; set = Sets.newHashSet(arr);</span><br></pre></td></tr></table></figure>
+<h4 id="4、利用Apache-Commons-Collections-第三方库CollectionUtils-addAll方法-1"><a href="#4、利用Apache-Commons-Collections-第三方库CollectionUtils-addAll方法-1" class="headerlink" title="4、利用Apache Commons Collections 第三方库CollectionUtils.addAll方法"></a>4、利用<code>Apache Commons Collections</code> 第三方库<code>CollectionUtils.addAll</code>方法</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Integer[] arr = <span class="keyword">new</span> Integer[]&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">7</span>, <span class="number">7</span>, <span class="number">7</span>, <span class="number">7</span>&#125;;</span><br><span class="line">Set&lt;Integer&gt; set = <span class="keyword">new</span> HashSet&lt;Integer&gt;();</span><br><span class="line">CollectionUtils.addAll(set, arr);</span><br></pre></td></tr></table></figure>
+<h3 id="将Set转换成Array"><a href="#将Set转换成Array" class="headerlink" title="将Set转换成Array"></a>将Set转换成Array</h3><h4 id="1、利用toArray方法-1"><a href="#1、利用toArray方法-1" class="headerlink" title="1、利用toArray方法"></a>1、利用<code>toArray</code>方法</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Integer[] arr = set.toArray(<span class="keyword">new</span> Integer[set.size()]);</span><br></pre></td></tr></table></figure>
+<h4 id="2、利用Guava库的Lists-toArray方法-1"><a href="#2、利用Guava库的Lists-toArray方法-1" class="headerlink" title="2、利用Guava库的Lists.toArray方法"></a>2、利用<code>Guava</code>库的<code>Lists.toArray</code>方法</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] arr = Ints.toArray(set);</span><br></pre></td></tr></table></figure>
+<h4 id="3、利用Apache-Commons-Collections-库的Lists-toArray方法"><a href="#3、利用Apache-Commons-Collections-库的Lists-toArray方法" class="headerlink" title="3、利用Apache Commons Collections 库的Lists.toArray方法"></a>3、利用<code>Apache Commons Collections</code> 库的<code>Lists.toArray</code>方法</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Integer[] arr = set.toArray(<span class="keyword">new</span> Integer[set.size()]);</span><br></pre></td></tr></table></figure>
+<h2 id="Java中List和Set之间的转换"><a href="#Java中List和Set之间的转换" class="headerlink" title="Java中List和Set之间的转换"></a>Java中List和Set之间的转换</h2><p>这里的转换可基于上述<strong>Array</strong>和<strong>List</strong>、<strong>Array</strong>和<strong>Set</strong>之间的转换，操作有些重复这里不过多赘述。</p>
+<p>导入相应第三方库详细操作可见<a href="https://woshiqiuhan.github.io/2020/07/24/Jave-IDEA-Maven-library-import/#more">博客</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" <i class="fa fa-tag"></i> Java</a>
+          
+            <a href="/tags/Collection/" <i class="fa fa-tag"></i> Collection</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/07/24/Jave-IDEA-Maven-library-import/" rel="next" title="IDEA为Maven项目添加第三方库依赖">
+                <i class="fa fa-chevron-left"></i> IDEA为Maven项目添加第三方库依赖
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/07/25/Java-Collection-List-ArrayList/" rel="prev" title="Java集合之List——ArrayList详解">
+                Java集合之List——ArrayList详解 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/touxiang.png"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">41</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/woshiqiuhan" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Java%E9%9B%86%E5%90%88%E2%80%94%E2%80%94Collection%E4%B9%8B%E9%97%B4%E7%9A%84%E8%BD%AC%E6%8D%A2"><span class="nav-number">1.</span> <span class="nav-text">Java集合——Collection之间的转换</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Java%E4%B8%ADArray%E5%92%8CList%E4%B9%8B%E9%97%B4%E7%9A%84%E8%BD%AC%E6%8D%A2"><span class="nav-number">1.1.</span> <span class="nav-text">Java中Array和List之间的转换</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%86Array%E8%BD%AC%E6%8D%A2%E6%88%90List"><span class="nav-number">1.1.1.</span> <span class="nav-text">将Array转换成List</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1%E3%80%81%E5%88%A9%E7%94%A8Arrays-asList%E6%96%B9%E6%B3%95"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">1、利用Arrays.asList方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2%E3%80%81%E5%88%A9%E7%94%A8Collections-addAll%E6%96%B9%E6%B3%95"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">2、利用Collections.addAll方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3%E3%80%81%E5%88%A9%E7%94%A8Guava%E5%BA%93%E7%9A%84Lists-newArrayList%E6%96%B9%E6%B3%95"><span class="nav-number">1.1.1.3.</span> <span class="nav-text">3、利用Guava库的Lists.newArrayList方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4%E3%80%81%E5%88%A9%E7%94%A8Apache-Commons-Collections-%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93CollectionUtils-addAll%E6%96%B9%E6%B3%95"><span class="nav-number">1.1.1.4.</span> <span class="nav-text">4、利用Apache Commons Collections 第三方库CollectionUtils.addAll方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%86List%E8%BD%AC%E6%8D%A2%E6%88%90Array"><span class="nav-number">1.1.2.</span> <span class="nav-text">将List转换成Array</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1%E3%80%81%E5%88%A9%E7%94%A8toArray%E6%96%B9%E6%B3%95"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">1、利用toArray方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2%E3%80%81%E5%88%A9%E7%94%A8Guava%E5%BA%93%E7%9A%84Lists-toArray%E6%96%B9%E6%B3%95"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">2、利用Guava库的Lists.toArray方法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java%E4%B8%ADArray%E5%92%8CSet%E4%B9%8B%E9%97%B4%E7%9A%84%E8%BD%AC%E6%8D%A2"><span class="nav-number">1.2.</span> <span class="nav-text">Java中Array和Set之间的转换</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%86Array%E8%BD%AC%E6%8D%A2%E6%88%90Set"><span class="nav-number">1.2.1.</span> <span class="nav-text">将Array转换成Set</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1%E3%80%81%E5%88%A9%E7%94%A8HashSet%E7%9A%84%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">1、利用HashSet的构造方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2%E3%80%81%E5%88%A9%E7%94%A8Collections-addAll%E6%96%B9%E6%B3%95-1"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">2、利用Collections.addAll方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3%E3%80%81%E5%88%A9%E7%94%A8Guava%E5%BA%93%E7%9A%84Sets-newHashSet%E6%96%B9%E6%B3%95"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">3、利用Guava库的Sets.newHashSet方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4%E3%80%81%E5%88%A9%E7%94%A8Apache-Commons-Collections-%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93CollectionUtils-addAll%E6%96%B9%E6%B3%95-1"><span class="nav-number">1.2.1.4.</span> <span class="nav-text">4、利用Apache Commons Collections 第三方库CollectionUtils.addAll方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%86Set%E8%BD%AC%E6%8D%A2%E6%88%90Array"><span class="nav-number">1.2.2.</span> <span class="nav-text">将Set转换成Array</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1%E3%80%81%E5%88%A9%E7%94%A8toArray%E6%96%B9%E6%B3%95-1"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">1、利用toArray方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2%E3%80%81%E5%88%A9%E7%94%A8Guava%E5%BA%93%E7%9A%84Lists-toArray%E6%96%B9%E6%B3%95-1"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">2、利用Guava库的Lists.toArray方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3%E3%80%81%E5%88%A9%E7%94%A8Apache-Commons-Collections-%E5%BA%93%E7%9A%84Lists-toArray%E6%96%B9%E6%B3%95"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">3、利用Apache Commons Collections 库的Lists.toArray方法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java%E4%B8%ADList%E5%92%8CSet%E4%B9%8B%E9%97%B4%E7%9A%84%E8%BD%AC%E6%8D%A2"><span class="nav-number">1.3.</span> <span class="nav-text">Java中List和Set之间的转换</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<div class="copyright">&copy; 2020 &mdash; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">秋寒</span>
+
+  
+</div>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>  |  
+</span>
+</div>
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共76.6k字</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+
+-->
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'mDbYYx5CUkxyOI3ti6ycYw7V-gzGzoHsz',
+        appKey: 'hL6dKuJXyy7HRHnDn5SXuaRY',
+        placeholder: '请留下您的疑问！',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'5' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+        
+          if(result)$(this).text('复制成功')
+          else $(this).text('复制失败')
+        
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>
+
+
+</body>
+</html>
